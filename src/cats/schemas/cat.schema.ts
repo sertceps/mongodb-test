@@ -1,18 +1,18 @@
-import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-export type CatDocument = Cat & Document
+export type CatDocument = Cat & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Cat {
     @Prop()
-    name: string
+    name: string;
 
-    @Prop()
-    age: string
+    @Prop({ type: Number, min: 0, default: 0 })
+    age: number;
 
-    @Prop()
-    breed: string
+    @Prop({ type: Date, default: Date.now() })
+    createAt: Date;
 }
 
-export const CatSchema = SchemaFactory.createForClass(Cat)
+export const CatSchema = SchemaFactory.createForClass(Cat);
