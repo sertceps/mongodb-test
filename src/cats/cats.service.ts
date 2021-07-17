@@ -5,20 +5,20 @@ import { CatDocument, Cat } from './schemas/cat.schema';
 
 @Injectable()
 export class CatsService {
-    constructor(
-        @InjectConnection()
-        private readonly connection: Connection,
+  constructor(
+    @InjectConnection()
+    private readonly connection: Connection,
 
-        @InjectModel(Cat.name)
-        private readonly catModel: Model<CatDocument>,
-    ) { }
+    @InjectModel(Cat.name)
+    private readonly catModel: Model<CatDocument>
+  ) {}
 
-    async findAll() {
-        return this.catModel.find().exec();
-    }
+  async findAll() {
+    return this.catModel.find().exec();
+  }
 
-    async create(cat: { name: string; age: number }) {
-        const catS = new this.catModel(cat);
-        return catS.save();
-    }
+  async create(cat: { name: string; age: number }) {
+    const catS = new this.catModel(cat);
+    return catS.save();
+  }
 }
