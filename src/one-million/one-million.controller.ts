@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateReqDto } from '../common/dtos/create.req.dto';
+import { GetResDto } from '../common/dtos/get.res.dto';
 import { ObjectIdReqDto } from '../common/dtos/object-id.req.dto';
 import { ObjectIdResDto } from '../common/dtos/object-id.res.dto';
 import { OneMillionService } from './one-million.service';
-import { OneMillionDocument } from './schemas/one-million.schemas';
 
 @Controller('one-million')
 export class OneMillionController {
@@ -16,7 +16,7 @@ export class OneMillionController {
   }
 
   @Get(':object_id')
-  async findOne(@Param() { object_id }: ObjectIdReqDto): Promise<OneMillionDocument> {
+  async findOne(@Param() { object_id }: ObjectIdReqDto): Promise<GetResDto> {
     return await this.oneMillionService.findOne(object_id);
   }
 }

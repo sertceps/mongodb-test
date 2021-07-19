@@ -10,14 +10,14 @@ export class TenMillionService {
     private readonly tenMillionModel: Model<TenMillionDocument>
   ) {}
 
-  async createOne(name: string, age?: number, gender?: string, description?: string) {
+  async createOne(name: string, age?: number, gender?: string, description?: string): Promise<TenMillionDocument> {
     const doc = Object.assign({ name }, age ? { age } : {}, gender ? { gender } : {}, description ? { description } : {});
     const createdTenMillion = new this.tenMillionModel(doc);
 
     return createdTenMillion.save();
   }
 
-  async findOne(object_id: string) {
+  async findOne(object_id: string): Promise<TenMillionDocument> {
     return this.tenMillionModel.findById(object_id);
   }
 }

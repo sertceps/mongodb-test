@@ -1,4 +1,4 @@
-export class CreateResDto {
+export class GetResDto {
   gender: string;
 
   age: number;
