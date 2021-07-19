@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { HundredMillion, HundredMillionDocument } from './hundred-million.schema';
+import { HundredMillion, HundredMillionDocument } from './schemas/hundred-million.schema';
 
 @Injectable()
 export class HundredMillionService {
@@ -13,6 +13,7 @@ export class HundredMillionService {
   async createOne(name: string, age?: number, gender?: string, description?: string): Promise<HundredMillionDocument> {
     const doc = Object.assign({ name }, age ? { age } : {}, gender ? { gender } : {}, description ? { description } : {});
     const createdHundredMillion = new this.hundredMillionModel(doc);
+
     return createdHundredMillion.save();
   }
 

@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { OneMillionModule } from './one-million/one-million.module';
 import { TenMillionModule } from './ten-million/ten-million.module';
-import { HundredMillionModule } from './hundred-million/schemas/hundred-million.module';
+import { HundredMillionModule } from './hundred-million/hundred-million.module';
 import { BillionModule } from './billion/billion.module';
 
 @Module({

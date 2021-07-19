@@ -10,6 +10,7 @@ export class OneMillionService {
   async createOne(name: string, age?: number, gender?: string, description?: string): Promise<OneMillionDocument> {
     const doc = Object.assign({ name }, age ? { age } : {}, gender ? { gender } : {}, description ? { description } : {});
     const createdOneMillion = new this.oneMillionModel(doc);
+
     return createdOneMillion.save();
   }
 

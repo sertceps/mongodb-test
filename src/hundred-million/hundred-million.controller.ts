@@ -3,7 +3,7 @@ import { CreateReqDto } from '../common/dtos/create.req.dto';
 import { GetResDto } from '../common/dtos/get.res.dto';
 import { ObjectIdReqDto } from '../common/dtos/object-id.req.dto';
 import { ObjectIdResDto } from '../common/dtos/object-id.res.dto';
-import { HundredMillionService } from './schemas/hundred-million.service';
+import { HundredMillionService } from './hundred-million.service';
 
 @Controller('hundred-million')
 export class HundredMillionController {
@@ -12,6 +12,7 @@ export class HundredMillionController {
   @Post()
   async createOne(@Body() body: CreateReqDto): Promise<ObjectIdResDto> {
     const doc = await this.hundredMillionService.createOne(body.name, body.age, body.gender, body.description);
+
     return { object_id: doc._id };
   }
 

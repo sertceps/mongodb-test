@@ -12,6 +12,7 @@ export class TenMillionController {
   @Post()
   async createOne(@Body() body: CreateReqDto): Promise<ObjectIdResDto> {
     const doc = await this.tenMillionService.createOne(body.name, body.age, body.gender, body.description);
+
     return { object_id: doc._id };
   }
 

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { HundredMillionController } from '../hundred-million.controller';
-import { HundredMillion, HundredMillionSchema } from './hundred-million.schema';
+import { HundredMillionController } from './hundred-million.controller';
+import { HundredMillion, HundredMillionSchema } from './schemas/hundred-million.schema';
 import { HundredMillionService } from './hundred-million.service';
 
 @Module({
