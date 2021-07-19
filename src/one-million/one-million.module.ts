@@ -7,7 +7,6 @@ import { OneMillion, OneMillionSchema } from './schemas/one-million.schemas';
 @Module({
   imports: [MongooseModule.forFeature([{ name: OneMillion.name, schema: OneMillionSchema }], 'oneMillion')],
   controllers: [OneMillionController],
-  providers: [OneMillionService],
-  exports: [MongooseModule]
+  providers: [OneMillionService]
 })
 export class OneMillionModule {}

@@ -7,7 +7,6 @@ import { TenMillionService } from './ten-million.service';
 @Module({
   imports: [MongooseModule.forFeature([{ name: TenMillion.name, schema: TenMillionSchema }], 'tenMillion')],
   controllers: [TenMillionController],
-  providers: [TenMillionService],
-  exports: [MongooseModule]
+  providers: [TenMillionService]
 })
 export class TenMillionModule {}
