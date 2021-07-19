@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { OneMillionModule } from './one-million/one-million.module';
 import { TenMillionModule } from './ten-million/ten-million.module';
 import { HundredMillionModule } from './hundred-million/schemas/hundred-million.module';
+import { BillionModule } from './billion/billion.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { HundredMillionModule } from './hundred-million/schemas/hundred-million.
     MongooseModule.forRoot('mongodb://localhost:27017/billion', { connectionName: 'billion' }),
     OneMillionModule,
     TenMillionModule,
-    HundredMillionModule
+    HundredMillionModule,
+    BillionModule
   ],
   controllers: [AppController],
   providers: [AppService]
