@@ -11,10 +11,11 @@ export class OneMillionController {
 
   @Post()
   async createOne(@Body() body: CreateReqDto): Promise<ObjectIdResDto> {
-    return await this.oneMillionService.createOne(body.name, body.age, body.gender);
+    const doc = await this.oneMillionService.createOne(body.name, body.age, body.gender);
+    return { object_id: doc._id };
   }
 
-  @Get()
+  @Get(':object_id')
   async findOne(@Param() { object_id }: ObjectIdReqDto): Promise<OneMillionDocument> {
     return await this.oneMillionService.findOne(object_id);
   }
