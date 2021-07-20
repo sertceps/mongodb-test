@@ -24,8 +24,7 @@ export class TenMillionService implements OnModuleInit {
         for (let j = 0; j < oneBatch; j++) {
           docList.push({ name: '一千万' });
         }
-        console.log(i);
-        const result = await this.tenMillionModel.insertMany(docList);
+        await this.tenMillionModel.insertMany(docList);
         console.log('插入一批');
       }
       // const docList = Array.from({ length: mod }, v => (v = { name: '一千万' }));
