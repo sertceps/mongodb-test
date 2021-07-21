@@ -1,6 +1,6 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, UpdateWriteOpResult } from 'mongoose';
 import { TenMillion, TenMillionDocument } from './schemas/ten-million.schema';
 
 @Injectable()
@@ -45,6 +45,14 @@ export class TenMillionService implements OnModuleInit {
     const createdTenMillion = new this.tenMillionModel(doc);
 
     return createdTenMillion.save();
+  }
+
+  async deleteOne(object_id: string): Promise<{ ok?: number; delete?: number } & { deletedCount?: number }> {
+    return this.tenMillionModel.deleteOne({ _id: object_id });
+  }
+
+  async updateOne(object_id: string, doc: { name?: string; age?: number; gender?: string; description?: string }): Promise<UpdateWriteOpResult> {
+    return this.tenMillionModel.updateOne({ _id: object_id }, doc);
   }
 
   async findOne(object_id: string): Promise<TenMillionDocument> {
