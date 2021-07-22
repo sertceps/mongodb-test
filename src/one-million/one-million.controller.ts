@@ -10,6 +10,11 @@ import { OneMillionService } from './one-million.service';
 export class OneMillionController {
   constructor(private readonly oneMillionService: OneMillionService) {}
 
+  @Get()
+  async echoTest() {
+    return 'hello-world';
+  }
+
   @Post()
   async createOne(@Body() body: CreateOrUpdateReqDto): Promise<ObjectIdResDto> {
     const doc = await this.oneMillionService.createOne(body.name, body.age, body.gender);

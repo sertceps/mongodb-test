@@ -27,6 +27,7 @@ export class BillionService implements OnModuleInit {
         for (let j = 0; j < oneBatch; j++) {
           docList.push({ name: '十亿' });
         }
+        console.log('inserting billion');
         await this.billionModel.insertMany(docList);
         console.log('插入一批');
       }

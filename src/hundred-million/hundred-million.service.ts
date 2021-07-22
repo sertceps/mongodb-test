@@ -24,7 +24,7 @@ export class HundredMillionService implements OnModuleInit {
         for (let j = 0; j < oneBatch; j++) {
           docList.push({ name: '一亿' });
         }
-        console.log(i);
+        console.log('inserting hundred-million');
         await this.hundredMillionModel.insertMany(docList);
         console.log('插入一批');
       }
@@ -34,9 +34,14 @@ export class HundredMillionService implements OnModuleInit {
       }
       await this.hundredMillionModel.insertMany(docList);
     } else {
-      for (let i = 0; i < -diff; i++) {
-        await this.hundredMillionModel.deleteOne({});
+      const mod = -diff % oneBatch;
+      const circles = Math.floor(-diff / oneBatch);
+      for (let i = 0; i < circles; i++) {
+        const docList = await this.hundredMillionModel.find({}).limit(oneBatch);
+        await Promise.all(docList.map(async v => v.deleteOne({})));
       }
+      const docList = await this.hundredMillionModel.find({}).limit(mod);
+      await Promise.all(docList.map(async v => v.deleteOne({})));
     }
   }
 
