@@ -11,39 +11,41 @@ export class TenMillionService implements OnModuleInit {
   ) {}
 
   async onModuleInit() {
-    const totalDocuments = await this.tenMillionModel.countDocuments();
-    const totalCount = 10000000;
-    const oneBatch = 100000;
-    const diff = totalCount - totalDocuments;
-    if (diff === 0) return;
-    if (diff > 0) {
-      const mod = diff % oneBatch;
-      const circles = Math.floor(diff / oneBatch);
-      for (let i = 0; i < circles; i++) {
-        const docList = [];
-        for (let j = 0; j < oneBatch; j++) {
-          docList.push({ name: '一千万' });
-        }
-        console.log('inserting ten-million');
-        await this.tenMillionModel.insertMany(docList);
-        console.log('插入一批');
-      }
-      // const docList = Array.from({ length: mod }, v => (v = { name: '一千万' }));
-      const docList = [];
-      for (let j = 0; j < mod; j++) {
-        docList.push({ name: '一千万' });
-      }
-      await this.tenMillionModel.insertMany(docList);
-    } else {
-      const mod = -diff % oneBatch;
-      const circles = Math.floor(-diff / oneBatch);
-      for (let i = 0; i < circles; i++) {
-        const docList = await this.tenMillionModel.find({}).limit(oneBatch);
-        await Promise.all(docList.map(async v => v.deleteOne({})));
-      }
-      const docList = await this.tenMillionModel.find({}).limit(mod);
-      await Promise.all(docList.map(async v => v.deleteOne({})));
-    }
+    console.log('ten-million skipped');
+
+    // const totalDocuments = await this.tenMillionModel.countDocuments();
+    // const totalCount = 10000000;
+    // const oneBatch = 100000;
+    // const diff = totalCount - totalDocuments;
+    // if (diff === 0) return;
+    // if (diff > 0) {
+    //   const mod = diff % oneBatch;
+    //   const circles = Math.floor(diff / oneBatch);
+    //   for (let i = 0; i < circles; i++) {
+    //     const docList = [];
+    //     for (let j = 0; j < oneBatch; j++) {
+    //       docList.push({ name: '一千万' });
+    //     }
+    //     console.log('inserting ten-million');
+    //     await this.tenMillionModel.insertMany(docList);
+    //     console.log('插入一批');
+    //   }
+    //   // const docList = Array.from({ length: mod }, v => (v = { name: '一千万' }));
+    //   const docList = [];
+    //   for (let j = 0; j < mod; j++) {
+    //     docList.push({ name: '一千万' });
+    //   }
+    //   await this.tenMillionModel.insertMany(docList);
+    // } else {
+    //   const mod = -diff % oneBatch;
+    //   const circles = Math.floor(-diff / oneBatch);
+    //   for (let i = 0; i < circles; i++) {
+    //     const docList = await this.tenMillionModel.find({}).limit(oneBatch);
+    //     await Promise.all(docList.map(async v => v.deleteOne({})));
+    //   }
+    //   const docList = await this.tenMillionModel.find({}).limit(mod);
+    //   await Promise.all(docList.map(async v => v.deleteOne({})));
+    // }
   }
 
   async createOne(name: string, age?: number, gender?: string, description?: string): Promise<TenMillionDocument> {

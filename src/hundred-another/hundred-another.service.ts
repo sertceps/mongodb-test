@@ -1,17 +1,18 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, UpdateWriteOpResult } from 'mongoose';
-import { HundredMillion, HundredMillionDocument } from './schemas/hundred-million.schema';
+import { Model } from 'mongoose';
+import { CreateHundredAnotherReqDto } from '../common/dtos/create-hundred-another-req.dto';
+import { HundredAnother, HundredAnotherDocument } from './schemas/hundred-another.schema';
 
 @Injectable()
-export class HundredMillionService implements OnModuleInit {
+export class HundredAnotherService implements OnModuleInit {
   constructor(
-    @InjectModel(HundredMillion.name)
-    private readonly hundredMillionModel: Model<HundredMillionDocument>
+    @InjectModel(HundredAnother.name)
+    private readonly hundredAnotherModel: Model<HundredAnotherDocument>
   ) {}
 
   async onModuleInit() {
-    console.log('hundred-million skipped');
+    console.log('hundred another');
 
     // const totalDocuments = await this.hundredMillionModel.countDocuments();
     // const totalCount = 100000000;
@@ -47,22 +48,17 @@ export class HundredMillionService implements OnModuleInit {
     // }
   }
 
-  async createOne(name: string, age?: number, gender?: string, description?: string): Promise<HundredMillionDocument> {
-    const doc = Object.assign({ name }, age ? { age } : {}, gender ? { gender } : {}, description ? { description } : {});
-    const createdHundredMillion = new this.hundredMillionModel(doc);
+  async createOne(doc): Promise<HundredAnotherDocument> {
+    const createdHundredMillion = new this.hundredAnotherModel(doc);
 
     return createdHundredMillion.save();
   }
 
   async deleteOne(object_id: string): Promise<{ ok?: number; delete?: number } & { deletedCount?: number }> {
-    return this.hundredMillionModel.deleteOne({ _id: object_id });
+    return this.hundredAnotherModel.deleteOne({ _id: object_id });
   }
 
-  async updateOne(object_id: string, doc: { name?: string; age?: number; gender?: string; description?: string }): Promise<UpdateWriteOpResult> {
-    return this.hundredMillionModel.updateOne({ _id: object_id }, doc);
-  }
-
-  async findOne(object_id: string): Promise<HundredMillionDocument> {
-    return this.hundredMillionModel.findById(object_id);
+  async findOne(object_id: string): Promise<HundredAnotherDocument> {
+    return this.hundredAnotherModel.findById(object_id);
   }
 }
