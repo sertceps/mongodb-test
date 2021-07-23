@@ -1,7 +1,6 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateHundredAnotherReqDto } from '../common/dtos/create-hundred-another-req.dto';
 import { HundredAnother, HundredAnotherDocument } from './schemas/hundred-another.schema';
 
 @Injectable()
@@ -60,5 +59,9 @@ export class HundredAnotherService implements OnModuleInit {
 
   async findOne(object_id: string): Promise<HundredAnotherDocument> {
     return this.hundredAnotherModel.findById(object_id);
+  }
+
+  async findTen(): Promise<HundredAnotherDocument[]> {
+    return this.hundredAnotherModel.find({}).limit(10);
   }
 }

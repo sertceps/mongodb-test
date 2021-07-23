@@ -24,6 +24,11 @@ export class HundredAnotherController {
 
   @Get(':object_id')
   async findOne(@Param() { object_id }: ObjectIdReqDto): Promise<any> {
-    return this.hundredAnotherService.findOne(object_id);
+    return await this.hundredAnotherService.findOne(object_id);
+  }
+
+  @Get()
+  async findTen(): Promise<any> {
+    return await this.hundredAnotherService.findTen();
   }
 }
